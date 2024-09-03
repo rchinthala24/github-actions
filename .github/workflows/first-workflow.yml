@@ -3,7 +3,12 @@ name: This is my first github workflow
 on:
   push:
      branch: ["main"]
-     dispatch_workflow:
+  workflow_dispatch:
+    inputs:
+      name:
+        type: string
+        description: something
+        required: true
 
 jobs:
   Explore-Github-Actions:
