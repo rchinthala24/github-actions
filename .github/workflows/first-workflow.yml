@@ -6,6 +6,6 @@ on:
 
 jobs:
   Explore-Github-Actions:
-    runs-on: ununtu-latest
+    runs-on: ubuntu-latest
     steps:
       - run: echo "Hello from github ${{ github.event_name }} event."
