@@ -1,0 +1,11 @@
+name: This is my first github workflow
+
+on:
+  push:
+     branch: ["main"]
+
+jobs:
+  Explore-Github-Actions:
+    runs-on: ununtu-latest
+    steps:
+      - run: echo "Hello from github ${{ github.event_name }} event."
