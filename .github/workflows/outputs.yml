@@ -9,12 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       name: ${{steps.step1.outputs.name}}
+      output_1: ${{steps.gen_output.outputs.output_1}}
+      output_2: ${{steps.gen_output.outputs.output_2}}
+      output_3: ${{steps.gen_output.outputs.output_3}}
+    strategy:
+      matrix:
+        version: [1, 2, 3]
     steps:
       - name: setting output
         id: step1
         run:  echo "name=Browny" >> $GITHUB_OUTPUT
       - name: printing output from step1
         run: echo "name from previoud step is ${{steps.step1.outputs.name}}"
+      - name: setting matrix related outputs
+        run: |
+          version = "${{matrix.version}}"
+          echo "output_${{version}}=${{version}}" >> "$GITHUB_OUTPUT"
   
   job2:
     runs-on: ubuntu-latest
@@ -22,3 +32,5 @@ jobs:
     steps:
       - name: printing output from previous job
         run: echo "name from previous job is ${{needs.job1.outputs.name}}"
+      - name: printing matrix outputs from prev job
+        run: echo "${{toJSON(needs.job1.outputs)}}"
