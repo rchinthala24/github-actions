@@ -7,9 +7,18 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    outputs:
+      name: ${{steps.step1.outputs.name}}
     steps:
       - name: setting output
         id: step1
         run:  echo "name=Browny" >> $GITHUB_OUTPUT
       - name: printing output from step1
         run: echo "name from previoud step is ${{steps.step1.outputs.name}}"
+  
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: printing output from previous job
+        run: echo "name from previous job is ${{needs.job1.outputs.name}}"
