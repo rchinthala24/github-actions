@@ -23,9 +23,7 @@ jobs:
         run: echo "name from previoud step is ${{steps.step1.outputs.name}}"
       - name: setting matrix related outputs
         id: gen_output
-        run: |
-          version = "${{matrix.version}}"
-          echo "output_${version}=${version}" >> "$GITHUB_OUTPUT"
+        run: echo "output_${{matrix.version}}=${{matrix.version}}" >> "$GITHUB_OUTPUT"
   
   job2:
     runs-on: ubuntu-latest
