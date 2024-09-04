@@ -12,4 +12,4 @@ jobs:
         id: step1
         run:  echo "name=Browny" >> $GITHUB_OUTPUT
       - name: printing output from step1
-        run: echo "name from previoud step is ${{steps.step1.name}}"
+        run: echo "name from previoud step is ${{steps.step1.outputs.name}}"
